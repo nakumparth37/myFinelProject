@@ -15,7 +15,7 @@ router.post("/", verify, async (req, res) => {
             res.status(500).json(error)
         }
     } else {
-        res.status(403).json("You are not Allowed :(");
+        res.status(403).json("You are not Allowed :(" );
     }
 });
 
@@ -77,12 +77,26 @@ router.get("/random", verify, async (req, res) => {
                 { $sample: { size: 1 } },
             ]);
         }
-        console.log(movie)
+        // console.log(movie)
         res.status(200).json(movie)
     } catch (error) {
         res.status(500).json(error)
     }
 }
 );
+
+// Get All 
+router.get("/", verify, async (req, res) => {
+    if (req.user.isAdmin) {
+        try {
+           const movies = await Movie.find()
+            res.status(200).json(movies.reverse());
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    } else {
+        res.status(403).json("You are not Allowed :(");
+    }
+});
 
 module.exports = router
