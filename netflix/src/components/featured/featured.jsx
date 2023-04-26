@@ -1,13 +1,31 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material"
 import "./featured.scss"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from "axios";
 
-const Featured = ({type}) => {
+const Featured = ({ type }) => {
+    const [content, setContent] = useState({});
+    useEffect(() => {
+        const getRandomContent = async () => {
+            try {
+                const res = await axios.get(`/movies/random?type=${type}`, {
+                    headers: {
+                        token: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDQxYTM4MTkxMGYxZWU5ZjE0ZTY3YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjE4NTc3NSwiZXhwIjoxNjgzMDQ5Nzc1fQ.aOVunmfuvw4AIM6e5qkl3cpHelpgYHND3onpKtDSkw8"
+                    }
+                });
+                setContent(res.data[0]);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        getRandomContent();
+    }, [type]);
+    console.log(content)
     return (
         <div className="featured">
             {type && (
                 <div className="category">
-                    <span>{type === "movie" ? "Movies" : "Series"}</span>
+                    <span>{type === "movies" ? "Movies" : "Series"}</span>
                     <select name="genre" id="genre">
                         <option>Genre</option>
                         <option value="advancer">Advancer</option>
@@ -25,11 +43,11 @@ const Featured = ({type}) => {
                     </select>
                 </div>
             )}
-            <img src="https://lumiere-a.akamaihd.net/v1/images/movie-page-avatar-21-9_r_c7e5c1ba.jpeg?region=0,0,3200,1372&width=2048" alt="img" />
+            <img src={content.img} alt="img" />
 
             <div className="info">
-                <img id="name_logo" src="https://lumiere-a.akamaihd.net/v1/images/movies-avatar-logo_26816967.png?region=0,0,712,166" alt="" />
-                <span className="desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsum deserunt nobis repudiandae corrupti et harum dolor asperiores ex perferendis.</span>
+                <img id="name_logo" src={content.imgTitle} alt="" />
+                <span className="desc">{content.desc}</span>
                 <div className="buttons">
                     <button className="play">
                         <PlayArrow />
