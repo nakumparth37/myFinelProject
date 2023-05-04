@@ -1,34 +1,34 @@
-.featured{
+.featured {
     height: 90vh;
     position: relative;
 
-    .category{
+    .category {
         position: absolute;
         top: 80px;
-        left:50px;
+        left: 50px;
         font-size: 30px;
         font-weight: bold;
         color: white;
         display: flex;
         align-items: center;
 
-        select{
+        select {
             cursor: pointer;
             background-color: var(--main-color);
             border: 1px solid white;
             color: white;
-            margin-left:20px ;
-            padding:5px;
+            margin-left: 20px;
+            padding: 5px;
         }
     }
 
-    img{
+    img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    .info{
+    .info {
         width: 35%;
         position: absolute;
         bottom: 37%;
@@ -38,19 +38,32 @@
         flex-direction: column;
 
 
-        img{
+        img {
             width: 400px;
         }
 
-        .desc{
-            margin:20px  0px;
+        .movie_title {
+            font-size: 70px;
+        }
+
+        .movies_Desc {
+            margin-top: 1.5rem;
+            width: 45rem;
+            line-height: 1.5;
+            font-size: 0.8rem;
+            max-width: 360px;
+            height: 88px;
+        }
+
+        .desc {
+            margin: 20px 0px;
             font-size: 16px;
         }
 
-        .buttons{
+        .buttons {
             display: flex;
 
-            button{
+            button {
                 padding: 10px 20px;
                 border: none;
                 border-radius: 5px;
@@ -62,21 +75,33 @@
                 margin-right: 10px;
                 cursor: pointer;
 
-                &.play{
+                &.play {
                     background-color: white;
                     color: var(--main-color);
                 }
 
-                &.more{
+                &.more {
                     background-color: grey;
                     color: white;
                 }
 
-                span{
+                span {
                     margin-left: 5px;
                 }
             }
         }
-        
+
+    }
+
+    .fedBottom {
+        position:absolute;
+        top:45rem;
+        z-index: 10000;
+        height: 7.4rem;
+        width: 100%;
+        background-image: linear-gradient(180deg,
+                transparent,
+                rgba(37, 37, 37, 0.61),
+                #111);
     }
 }

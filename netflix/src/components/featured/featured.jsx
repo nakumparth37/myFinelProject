@@ -1,26 +1,27 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material"
 import "./featured.scss"
 import React, { useEffect, useState } from 'react'
-import axios from "axios";
+import axios from "../../axios";
+import requests from "../Requests"
+
 
 const Featured = ({ type }) => {
     const [content, setContent] = useState({});
     useEffect(() => {
         const getRandomContent = async () => {
-            try {
-                const res = await axios.get(`/movies/random?type=${type}`, {
-                    headers: {
-                        token: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NDQxYTM4MTkxMGYxZWU5ZjE0ZTY3YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjE4NTc3NSwiZXhwIjoxNjgzMDQ5Nzc1fQ.aOVunmfuvw4AIM6e5qkl3cpHelpgYHND3onpKtDSkw8"
-                    }
-                });
-                setContent(res.data[0]);
-            } catch (error) {
-                console.log(error)
-            }
+            
+                const res = await axios.get(requests.fetchNetflixOriginals);
+                setContent(res.data.results[
+                    Math.floor(Math.random()* res.data.results.length-1)
+                ]);
+            return res;
         };
         getRandomContent();
-    }, [type]);
+    }, []);
     console.log(content)
+    function truncate(string , n){
+        return string?.length > n ? string.substring(0,n-1)+'...':string;
+    }
     return (
         <div className="featured">
             {type && (
@@ -43,11 +44,14 @@ const Featured = ({ type }) => {
                     </select>
                 </div>
             )}
-            <img src={content.img} alt="img" />
+            <div className="fedBottom" >
+            </div>
+            <img src={`https://image.tmdb.org/t/p/original/${content?.backdrop_path}`} alt="img" />
 
             <div className="info">
-                <img id="name_logo" src={content.imgTitle} alt="" />
-                <span className="desc">{content.desc}</span>
+                <h1 className="movie_title">
+                {content?.title || content?.name || content.original_name}
+                </h1>
                 <div className="buttons">
                     <button className="play">
                         <PlayArrow />
@@ -58,7 +62,11 @@ const Featured = ({ type }) => {
                         <span>Info</span>
                     </button>
                 </div>
+                <div className="movies_Desc">
+                <span className="desc">{truncate((content?.overview),100)}</span>
+                </div>
             </div>
+            
         </div>
     )
 
