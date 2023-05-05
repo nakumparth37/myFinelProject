@@ -3,14 +3,31 @@ import React, { useEffect, useRef, useState } from 'react'
 import "./list.scss"
 import Listitem  from '../listitem/Listitem'
 import axios from '../../axios'
+import requests from '../Requests'
 
 
-const List = ({ title, fetchUrl, isLargeRow }) => {
-  
+const List = ({title,fetchUrl }) => {
+
+    const indexArray=[0,1,2,3,4,5,6,7,8,9];
     
 
 const [sliderNumber, setSliderNumber] = useState(0);
 const [isMoved, setIsMoved] = useState(false);
+const [movies, setMovies] = useState([])
+
+useEffect(() => {
+  async function fetchData() {
+    const request = await axios.get(fetchUrl);
+    setMovies(request.data.results);
+    return request;
+  }
+ 
+  fetchData();
+ 
+}, [fetchUrl])
+// console.log(movies);
+let movieList = movies.sort(() => Math.random() - Math.random()).slice(0, 10)
+console.log(movieList);
 
 
 const listRef = useRef()
@@ -28,24 +45,20 @@ const handleClick = (director) => {
         listRef.current.style.transform = `translatex(${-230 + distance}px)`
     }
     console.log(distance);
+   
 }
 
 return (
+
     <div className='list'>
-        <span className="listTitle">Title</span>
+        <span className="listTitle">{title}</span>
         <div className="wrapper">
             <ArrowBackIosNewOutlined className='sliderArrow left' onClick={() => handleClick("left")} style={{ display: !isMoved && "none" }} />
             <div className="container" ref={listRef}>
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
-            <Listitem />
+                {movies.map((movieList,indexArray)=>(
+                    movieList.backdrop_path &&(
+                    <Listitem index={indexArray}  movieList={movieList}/>
+                )))}
             </div>
             <ArrowForwardIosOutlined className='sliderArrow right' onClick={() => handleClick("right")} />
         </div>

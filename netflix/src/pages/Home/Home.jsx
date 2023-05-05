@@ -12,12 +12,15 @@ const Home = ({ type }) => {
     <div className='home'>
       <Navbar />
       <Featured type={type} />
-      <List title ='NetFlix Original' fetchUrl ={requests.fetchNetflixOriginals} isLargeRow/>
-      <List title ='Action Movies' fetchUrl ={requests.fetchActionMovies} />
-      {/* <List title ='Documentary Movies' fetchUrl ={requests.fetchDocumentaries}/>
-      <List title='Top Rated' fetchUrl={requests.fetchTopRated}/>
-      <List title ='Horrors Movies' fetchUrl ={requests.fetchHorrorMovies} />
-      */}
+      <List  title ='Treading Original' fetchUrl ={requests.fetchTrending}/>
+      <List  title ='NetFlix Original' fetchUrl ={requests.fetchNetflixOriginals}/>
+      <List  title ='Upcoming Movies' fetchUrl ={requests.fetchUpcoming} />
+      <List  title ='Action Movies' fetchUrl ={requests.fetchActionMovies} />
+      <List  title ='From TV' fetchUrl ={requests.fetchTv} />
+      <List  title ='HorrorMovies Movies' fetchUrl ={requests.fetchHorrorMovies} />
+      
+
+      
     </div>
   )
 }

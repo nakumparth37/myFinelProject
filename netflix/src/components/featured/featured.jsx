@@ -10,7 +10,7 @@ const Featured = ({ type }) => {
     useEffect(() => {
         const getRandomContent = async () => {
             
-                const res = await axios.get(requests.fetchNetflixOriginals);
+                const res = await axios.get(requests.fetchUpcoming);
                 setContent(res.data.results[
                     Math.floor(Math.random()* res.data.results.length-1)
                 ]);
