@@ -14,10 +14,10 @@ const Home = ({ type }) => {
       <Featured type={type} />
       <List title ='NetFlix Original' fetchUrl ={requests.fetchNetflixOriginals} isLargeRow/>
       <List title ='Action Movies' fetchUrl ={requests.fetchActionMovies} />
-      <List title ='Documentary Movies' fetchUrl ={requests.fetchDocumentaries}/>
+      {/* <List title ='Documentary Movies' fetchUrl ={requests.fetchDocumentaries}/>
       <List title='Top Rated' fetchUrl={requests.fetchTopRated}/>
       <List title ='Horrors Movies' fetchUrl ={requests.fetchHorrorMovies} />
-     
+      */}
     </div>
   )
 }

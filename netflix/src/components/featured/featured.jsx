@@ -44,8 +44,8 @@ const Featured = ({ type }) => {
                     </select>
                 </div>
             )}
-            <div className="fedBottom" >
-            </div>
+            {/* <div className="fedBottom" >
+            </div> */}
             <img src={`https://image.tmdb.org/t/p/original/${content?.backdrop_path}`} alt="img" />
 
             <div className="info">

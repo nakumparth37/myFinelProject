@@ -1,9 +1,9 @@
 .listItem {
-    width: 352px;
-    height: 220px;
+    width: 225px;
+    height: 120px;
     background-color: var(--main-color);
     color: black;
-    margin-right: 10px;
+    margin-right: 5px;
     overflow: hidden;
     cursor: pointer;
     color: white;
@@ -15,8 +15,8 @@
     }
 
     video {
-        width: 452px;
-        height: 240px;
+        width: 325px;
+        height: 200px;
         object-fit: cover;
         position: absolute;
         top: 0;
@@ -24,8 +24,8 @@
     }
 
     &:hover {
-        width: 452px;
-        height: 400px;
+        width: 325px;
+        height: 300px;
         position: absolute;
         top: -150px;
         border-radius: 10px;
@@ -34,7 +34,7 @@
 
 
         img {
-            height: 240px;
+            height: 140px;
             object-fit: cover;
         }
 

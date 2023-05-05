@@ -17,7 +17,7 @@ const Watch = () => {
                 <p className="home"> Home</p>
             </div>
             </Link>
-            <video className="video" src={movie.video} autoPlay controls progress />
+            <video className="video" src={trailer_videos} autoPlay controls progress />
         </div>
     )
 }
